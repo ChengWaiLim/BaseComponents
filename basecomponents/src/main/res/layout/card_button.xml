@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardView"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="8dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="4dp"
+    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/roundedIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:elevation="12dp"
+            android:layout_centerHorizontal="true"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.9"
+            android:gravity="center"
+            app:cardBackgroundColor="@color/orange"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="10"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/imageIcon"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="3"
+                    android:src="@drawable/ic_description"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true">
+                </ImageView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey2"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            >
+        </View>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="16dp"
+            android:fontFamily="@font/maven_pro_bold"
+            android:textColor="@color/grey"
+            android:textSize="18dp"
+            android:scrollHorizontally="false"
+            android:textAlignment="center"
+            android:text="Taking In-house process"
+            />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
