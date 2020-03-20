@@ -1,4 +1,4 @@
-package hk.com.chengwailim.basecomponents.components
+package hk.com.chengwailim.basecomponents.Components
 
 import android.content.Context
 import android.util.AttributeSet
