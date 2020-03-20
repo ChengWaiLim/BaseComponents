@@ -1,4 +1,4 @@
-package hk.com.chengwailim.basecomponents
+package hk.com.chengwailim.basecomponents.Util
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

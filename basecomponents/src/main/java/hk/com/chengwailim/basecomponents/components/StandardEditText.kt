@@ -1,4 +1,4 @@
-package hk.com.chengwailim.basecomponents
+package hk.com.chengwailim.basecomponents.components
 
 import android.content.Context
 import android.text.InputFilter
@@ -6,6 +6,7 @@ import android.text.InputType
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import hk.com.chengwailim.basecomponents.R
 import kotlinx.android.synthetic.main.standard_edit_text.view.*
 
 open class StandardEditText @JvmOverloads constructor(
@@ -22,9 +23,11 @@ open class StandardEditText @JvmOverloads constructor(
     }
 
     open fun initView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0){
-        View.inflate(context, R.layout.standard_edit_text, this)
+        View.inflate(context,
+            R.layout.standard_edit_text, this)
         attrs?.let {
-            val attributes = context.obtainStyledAttributes(it, R.styleable.StandardEditText, 0, 0)
+            val attributes = context.obtainStyledAttributes(it,
+                R.styleable.StandardEditText, 0, 0)
             text_view_title.setText(attributes.getString(R.styleable.StandardEditText_title))
             standard_edit_text.inputType = context.obtainStyledAttributes(it, intArrayOf(android.R.attr.inputType) ,0, 0).getInt(0, InputType.TYPE_CLASS_TEXT)
             standard_edit_text.setText(context.obtainStyledAttributes(it, intArrayOf(android.R.attr.text) ,0, 0).getString(0))
