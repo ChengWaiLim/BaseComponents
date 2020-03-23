@@ -1,14 +1,25 @@
 package hk.com.chengwailim.basecomponents.Util
 
 import android.content.Intent
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 abstract class Router : AppCompatActivity() {
-    protected fun goToPage(activity: Activity) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    fun goToPage(activity: Activity) {
         prepareIntent(activity)
     }
 
-    protected fun goToPage(activity: Activity, intentCallback: (Intent) -> Intent) {
+    fun goToPage(activity: Activity, intentCallback: (Intent) -> Intent) {
         prepareIntent(activity, { intentCallback.invoke(it) })
     }
 
