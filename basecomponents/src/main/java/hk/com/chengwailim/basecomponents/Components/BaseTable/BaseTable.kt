@@ -85,6 +85,7 @@ class BaseTable<T> @JvmOverloads constructor(
             params.weight = 1.0f
             tableHeader.layoutParams = params
             tableHeader.setText(it)
+            tableHeader.setBackgroundColor(context.resources.getColor(R.color.pale_grey))
             headerLayout.addView(tableHeader)
             tableHeaderList.add(tableHeader)
         }

@@ -20,7 +20,6 @@ class TableHeader @JvmOverloads constructor(
             }
         }
     }
-
     fun sortOnClickListener(callback: (status: SortStatus)->Unit){
         this.setOnClickListener {
             when(this.status){
