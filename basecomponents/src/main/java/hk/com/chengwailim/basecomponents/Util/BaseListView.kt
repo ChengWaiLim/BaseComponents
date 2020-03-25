@@ -14,10 +14,9 @@ import com.baoyz.swipemenulistview.SwipeMenuListView
 import hk.com.chengwailim.basecomponents.R
 
 abstract class BaseListView<T>(private val context: Context, private var dataList: ArrayList<T>, private var list_view: SwipeMenuListView?, private var list_item_view: Int): BaseAdapter() {
-    var a = 10
-
     init {
         list_view?.adapter = this
+        if(list_view != null) setMenu(list_view!!)
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -27,6 +26,10 @@ abstract class BaseListView<T>(private val context: Context, private var dataLis
             vi = LayoutInflater.from(context)
             v = vi.inflate(list_item_view, parent, false)
         }
+        if (position % 2 == 1)
+            v!!.setBackgroundColor(context.resources.getColor(R.color.pale_blue));
+        else
+            v!!.setBackgroundColor(context.resources.getColor(R.color.yellow));
         return getView(v!!, getItem(position), position);
     }
 
