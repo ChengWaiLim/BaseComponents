@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.ListView
+import com.baoyz.swipemenulistview.SwipeMenuListView
 import hk.com.chengwailim.basecomponents.Components.BaseTable.Interfaces.CustomizedFilter
 import hk.com.chengwailim.basecomponents.Components.BaseTable.Interfaces.SortInterface
 import hk.com.chengwailim.basecomponents.Components.BaseTable.TableHeader
@@ -13,7 +14,7 @@ import hk.com.chengwailim.basecomponents.Util.BaseListView
 class BaseTable<T> @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr){
-    var list: ListView
+    var list: SwipeMenuListView
     private lateinit var listAdapter: BaseListView<T>
     private var headerLayout: LinearLayout
     private var tableHeaderList = ArrayList<TableHeader>()
@@ -29,7 +30,7 @@ class BaseTable<T> @JvmOverloads constructor(
             LayoutParams.WRAP_CONTENT
         )
         headerLayout.orientation = HORIZONTAL
-        list = ListView(getContext(), attrs, defStyleAttr)
+        list = SwipeMenuListView(getContext(), attrs, defStyleAttr)
         list.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         this.addView(headerLayout)
         this.addView(list)
