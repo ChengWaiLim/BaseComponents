@@ -3,7 +3,6 @@ package hk.com.chengwailim.basecomponents
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import android.widget.ListView
 import com.baoyz.swipemenulistview.SwipeMenuListView
 import hk.com.chengwailim.basecomponents.Components.BaseTable.Interfaces.CustomizedFilter
 import hk.com.chengwailim.basecomponents.Components.BaseTable.Interfaces.SortInterface
@@ -14,7 +13,7 @@ import hk.com.chengwailim.basecomponents.Util.BaseListView
 class BaseTable<T> @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr){
-    var list: SwipeMenuListView
+    var list_view: SwipeMenuListView
     private lateinit var listAdapter: BaseListView<T>
     private var headerLayout: LinearLayout
     private var tableHeaderList = ArrayList<TableHeader>()
@@ -30,17 +29,18 @@ class BaseTable<T> @JvmOverloads constructor(
             LayoutParams.WRAP_CONTENT
         )
         headerLayout.orientation = HORIZONTAL
-        list = SwipeMenuListView(getContext(), attrs, defStyleAttr)
-        list.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        list_view = SwipeMenuListView(getContext(), attrs, defStyleAttr)
+        list_view.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         this.addView(headerLayout)
-        this.addView(list)
+        this.addView(list_view)
     }
 
     fun setDataAdapter(dataAdapter: BaseListView<T>) {
-        dataList = dataAdapter.getData() as ArrayList<T>
         listAdapter = dataAdapter
-        list.adapter = listAdapter
-        refresh(dataAdapter.getData())
+        dataList = listAdapter.getData() as ArrayList<T>
+        listAdapter.setListView(list_view)
+        list_view.adapter = listAdapter
+        refresh(listAdapter.getData())
     }
     fun refresh(list: ArrayList<T>) {
         listAdapter.refresh(list)

@@ -11,7 +11,8 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var base_table = findViewById<BaseTable<Location>>(R.id.base_table)
-        base_table.setDataAdapter(TestingList(this, arrayListOf(Location("A", "E"),Location("B", "S"),Location("C", "V"),Location("D", "F"), Location("E", "A"), Location("F", "G"))))
+        var testingList = TestingList(this, arrayListOf(Location("A", "E"),Location("B", "S"),Location("C", "V"),Location("D", "F"), Location("E", "A"), Location("F", "G")))
+        base_table.setDataAdapter(testingList)
         base_table.setUpHeader(arrayListOf("C1", "C2"))
         var a = object : SortInterface<Location> {
             override fun sortColumn(data: Location): String {
@@ -29,6 +30,5 @@ class MainActivity : AppCompatActivity(){
                 return ArrayList(dataList.filter { it.code.equals("A") })
             }
         })
-        base_table.filter()
     }
 }
