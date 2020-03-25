@@ -2,15 +2,33 @@ package hk.com.chengwailim.basecomponents
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import com.beardedhen.androidbootstrap.BootstrapButton
-import hk.com.chengwailim.basecomponents.Util.BaseDialog
+import android.util.Log
+import hk.com.chengwailim.basecomponents.Components.BaseTable.Interfaces.CustomizedFilter
+import hk.com.chengwailim.basecomponents.Components.BaseTable.Interfaces.SortInterface
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        BaseDialog.confirmDialog(this, "Failed", "message", {})
+        var base_table = findViewById<BaseTable<Location>>(R.id.base_table)
+        base_table.setDataAdapter(TestingList(this, arrayListOf(Location("A", "E"),Location("B", "S"),Location("C", "V"),Location("D", "F"), Location("E", "A"), Location("F", "G"))))
+        base_table.setUpHeader(arrayListOf("C1", "C2"))
+        var a = object : SortInterface<Location> {
+            override fun sortColumn(data: Location): String {
+                return data.code
+            }
+        }
+        var b = object :SortInterface<Location>{
+            override fun sortColumn(data: Location): String {
+                return data.name
+            }
+        }
+        base_table.setSortInterface(a,b)
+        base_table.setFilterInterface(object: CustomizedFilter<Location> {
+            override fun filter(dataList: ArrayList<Location>): ArrayList<Location> {
+                return ArrayList(dataList.filter { it.code.equals("A") })
+            }
+        })
+        base_table.filter()
     }
 }

@@ -7,22 +7,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    
-    <hk.com.chengwailim.basecomponents.Components.StandardButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ASDAASDA"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ASSADS"/>
+   <hk.com.chengwailim.basecomponents.BaseTable
+       android:id="@+id/base_table"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+
+<!--   <ListView-->
+<!--       android:id="@+id/list_view"-->
+<!--       android:layout_width="match_parent"-->
+<!--       android:layout_height="match_parent"/>-->
 
 </LinearLayout>

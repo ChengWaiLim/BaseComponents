@@ -8,4 +8,7 @@
     <declare-styleable name="StandardEditText">
         <attr name="title" />
     </declare-styleable>
+    <declare-styleable name="TableHeader">
+        <attr name="title" />
+    </declare-styleable>
 </resources>

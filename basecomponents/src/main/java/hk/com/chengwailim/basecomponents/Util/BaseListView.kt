@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 
-abstract class BaseListView<T>(private val context: Context, private var dataList: ArrayList<T>, private val list_view: ListView, private val list_item_view: Int): BaseAdapter() {
+abstract class BaseListView<T>(private val context: Context, private var dataList: ArrayList<T>, private var list_view: ListView?, private val list_item_view: Int): BaseAdapter() {
 
     init {
-        list_view.adapter = this
+        list_view?.adapter = this
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -35,6 +35,10 @@ abstract class BaseListView<T>(private val context: Context, private var dataLis
 
     override fun getCount(): Int {
         return dataList.size
+    }
+
+    fun getData():ArrayList<T>{
+        return dataList
     }
 
     fun refresh(data: ArrayList<T>){
