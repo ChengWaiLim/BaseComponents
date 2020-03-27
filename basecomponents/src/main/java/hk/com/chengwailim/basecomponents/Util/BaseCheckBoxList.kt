@@ -1,11 +1,9 @@
-package hk.com.chengwailim.basecomponents.Components
+package hk.com.chengwailim.basecomponents.Util
 
 import android.content.Context
 import android.view.View
 import android.widget.CheckBox
 import com.baoyz.swipemenulistview.SwipeMenuListView
-import hk.com.chengwailim.basecomponents.R
-import hk.com.chengwailim.basecomponents.Util.BaseListView
 
 abstract class BaseCheckBoxList<T>(
     private val context: Context,
