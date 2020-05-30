@@ -20,16 +20,16 @@ abstract class BaseHTTPRequest(private val context: Activity) {
         onFailCallback:(exception: Exception)->Unit
     ){
         client = OkHttpClient.Builder().connectTimeout(10, TimeUnit.MINUTES).readTimeout(10, TimeUnit.MINUTES).writeTimeout(10, TimeUnit.MINUTES)
-        val httpBuilder = url.toHttpUrlOrNull()!!.newBuilder()
-        queryParameter.forEach({key, value->
-            httpBuilder.addQueryParameter(key, value)
-        })
-        if(httpBuilder == null) onFailCallback.invoke(Exception("Null"))
+        val httpBuilder = url.toHttpUrlOrNull()?.newBuilder()
+        queryParameter.forEach { key, value->
+            httpBuilder?.addQueryParameter(key, value)
+        }
+        if(httpBuilder == null) onFailCallback.invoke(Exception("Failed to connect the host"))
         else{
             val builder = Request.Builder().url(httpBuilder.build())
-            headers.forEach({key, value->
+            headers.forEach { key, value->
                 builder.addHeader(key, value)
-            })
+            }
             when(method){
                 Method.GET->builder.get()
                 Method.POST->{
@@ -40,23 +40,23 @@ abstract class BaseHTTPRequest(private val context: Activity) {
                         ))
                 }
             }
-
             client.build().newCall(builder.build()).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     onFailCallback.invoke(e)
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    response.use {
-                        if (!response.isSuccessful)
-                            onFailCallback.invoke(IOException("Unexpected code $response"))
-                        else{
-                            val result = JSONObject(response.body!!.string())
-                            if(result.getString("returnCode").equals("0"))
+                    try {
+                        response.use {
+                            if (!response.isSuccessful)
+                                onFailCallback.invoke(IOException("Unexpected code $response"))
+                            else{
+                                val result = JSONObject(response.body!!.string())
                                 callback.invoke(result)
-                            else
-                                onFailCallback.invoke(Exception(result.getString("message")))
+                            }
                         }
+                    }catch (e: Exception){
+                        onFailCallback.invoke(e)
                     }
                 }
             })

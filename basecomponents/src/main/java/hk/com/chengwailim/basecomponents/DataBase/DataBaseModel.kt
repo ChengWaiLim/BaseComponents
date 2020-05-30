@@ -10,7 +10,10 @@ abstract class DataBaseModel(){
         fun getJSONObjectValue(jsonObject: JSONObject, field:String, type:Type):Any?{
             if(jsonObject.has(field)){
                 when(type){
-                    Type.STRING -> return jsonObject.getString(field)
+                    Type.STRING -> {
+                        if(jsonObject.getString(field) == "null") return null
+                        return jsonObject.getString(field)
+                    }
                     Type.INTEGER -> return jsonObject.getInt(field)
                     Type.DOUBLE -> return jsonObject.getDouble(field)
                     Type.DATE -> return  SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(jsonObject.getString(field))

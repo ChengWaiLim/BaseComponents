@@ -2,4 +2,7 @@
 <resources>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+    <string name="success">Success</string>
+    <string name="error_no_rfid_reader_found">No RFID Reader Found</string>
+    <string name="reader_connected">Reader Connected</string>
 </resources>

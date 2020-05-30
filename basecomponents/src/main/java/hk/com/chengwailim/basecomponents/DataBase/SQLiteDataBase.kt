@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import androidx.core.database.getFloatOrNull
 import androidx.core.database.getIntOrNull
 import androidx.core.database.getStringOrNull
+import hk.com.chengwailim.basecomponents.DataBase.BaseEnum
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,7 +17,8 @@ import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
 
 
-open class SQLiteDataBase(protected val context: Context) : SQLiteOpenHelper(context, "sfc_inventory.db", null, 1), DataBaseInterface {
+open class SQLiteDataBase(protected val context: Context) : SQLiteOpenHelper(context, "sfc_inventory.db", null, 1),
+    DataBaseInterface {
     protected lateinit var db: SQLiteDatabase
 
     @Throws(Exception::class)
@@ -70,8 +72,8 @@ open class SQLiteDataBase(protected val context: Context) : SQLiteOpenHelper(con
 
     @Throws(Exception::class)
     override fun closeDB() {
-        isDBExisted()
-        db.close()
+//        isDBExisted()
+//        db.close()
     }
 
     @Throws(Exception::class)
@@ -91,6 +93,10 @@ open class SQLiteDataBase(protected val context: Context) : SQLiteOpenHelper(con
                         prop.name,
                         SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(prop.getUnsafed(model) as Date)
                     )
+                    else -> {
+                        val enum = prop.getUnsafed(model) as BaseEnum
+                        contentValues.put(prop.name, enum.toValue())
+                    }
                 }
             }
         }
@@ -111,9 +117,10 @@ open class SQLiteDataBase(protected val context: Context) : SQLiteOpenHelper(con
 
     @Throws(Exception::class)
     private fun <T: DataBaseModel> castJSON(json:JSONObject, table: Class<T>):T{
-        return table.constructors.find {
-           it.parameterCount.equals(1) && it.parameters[0].type.equals(JSONObject::class.java)
-        }!!.newInstance(json) as T
+        return table.constructors.get(2).newInstance(json) as T
+//        return table.constructors.find {
+//            it.parameterCount.equals(1) && it.parameters[0].type.equals(JSONObject::class.java)
+//        }!!.newInstance(json) as T
     }
 
     private fun <T, R> KProperty1<T, R>.getUnsafed(receiver: Any): R {
@@ -142,4 +149,5 @@ open class SQLiteDataBase(protected val context: Context) : SQLiteOpenHelper(con
         if(db == null) throw Exception("DB is null")
     }
 }
+
 
