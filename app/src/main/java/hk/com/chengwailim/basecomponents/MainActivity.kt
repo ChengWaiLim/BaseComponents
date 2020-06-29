@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import hk.com.chengwailim.basecomponents.Components.BaseTable.Interfaces.CustomizedFilter
 import hk.com.chengwailim.basecomponents.Components.BaseTable.Interfaces.SortInterface
+import hk.com.chengwailim.basecomponents.RFID.RFIDReader
 
 class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity(){
         var testingList = TestingList(this, arrayListOf(Location("A", "E"),Location("B", "S"),Location("C", "V"),Location("D", "F"), Location("E", "A"), Location("F", "G")))
         base_table.setDataAdapter(testingList)
         base_table.setUpHeader(arrayListOf("C1", "C2"))
-        Log.d("meDebug", "ASDASD");
+        RFIDReader.setUpReader(this){isConnected->}
         var a = object : SortInterface<Location> {
             override fun sortColumn(data: Location): String {
                 return data.code
