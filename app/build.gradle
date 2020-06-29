@@ -40,6 +40,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation project( path: ':basecomponents')
+    implementation project( path: ':RFIDAPI3Library')
     implementation 'com.baoyz.swipemenulistview:library:1.3.0'
     implementation 'com.beardedhen:androidbootstrap:2.3.1'
     testImplementation 'junit:junit:4.12'
