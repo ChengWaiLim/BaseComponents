@@ -1,6 +1,5 @@
 rootProject.name='BaseComponents'
-include ':app', ':API3_LIB-release'
-include ':basecomponents', ':RFIDAPI3Library'
+include ':app'
+include ':basecomponents'
 include ':fancyalertdialog'
-project(':RFIDAPI3Library').projectDir = new File('RFIDAPI3Library')
 
