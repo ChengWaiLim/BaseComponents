@@ -1,4 +1,4 @@
 rootProject.name='BaseComponents'
-include ':app', ':RFIDAPI3Library'
+include ':app'
 include ':basecomponents'
 include ':fancyalertdialog'
