@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.BaseAdapter
 import android.widget.ListView
 import com.baoyz.swipemenulistview.SwipeMenuCreator
@@ -69,6 +70,11 @@ abstract class BaseListView<T>(private val context: Context, private var dataLis
         item.setIcon(drawable)
         item.width = width
         return item
+    }
+
+    fun setOnItemClickListener(callback: (item: T, view: View)->Unit){
+        list_view!!.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id -> callback.invoke(getItem(position), view!!) }
     }
 
 
