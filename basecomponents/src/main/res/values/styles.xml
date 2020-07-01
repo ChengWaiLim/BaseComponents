@@ -19,6 +19,16 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">15sp</item>
     </style>
+    <style name="toggleButton">
+        <item name="android:fontFamily">@font/maven_pro_bold</item>
+        <item name="android:background">@color/green</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textOn">START</item>
+        <item name="android:textOff">STOP</item>
+    </style>
     <style name="LoadingDialog" parent="Theme.AppCompat.Dialog">
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

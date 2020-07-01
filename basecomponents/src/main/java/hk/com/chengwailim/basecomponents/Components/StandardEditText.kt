@@ -16,10 +16,10 @@ open class StandardEditText @JvmOverloads constructor(
     init {
         initView(context, attrs, defStyleAttr)
         standard_edit_text.setSelectAllOnFocus(true)
-        standard_edit_text.setOnFocusChangeListener({ view, isFocused ->
+        standard_edit_text.setOnFocusChangeListener { view, isFocused ->
             if (isFocused)
                 standard_edit_text.selectAll()
-        })
+        }
     }
 
     open fun initView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0){
