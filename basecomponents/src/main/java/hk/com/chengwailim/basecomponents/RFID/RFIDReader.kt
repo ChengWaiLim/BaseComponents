@@ -17,8 +17,8 @@ class RFIDReader {
         var readTagEventsListener: RfidEventsListener? = null
         init { readers = Readers() }
 
-        fun setUpReader(context: Activity, callback: (isConnected: Boolean) -> Unit = {}) {
-            object : AsyncTask<Void, Void, Exception?>() {
+        fun setUpReader(context: Activity, callback: (isConnected: Boolean) -> Unit = {}, onReadTagCallback: (tag: String) -> Unit = {}) {
+             object : AsyncTask<Void, Void, Exception?>() {
                 override fun onPreExecute() {
                     BaseDialog.showLoading(context)
                 }
@@ -43,16 +43,23 @@ class RFIDReader {
                 override fun onPostExecute(result: Exception?) {
                     BaseDialog.stopLoading()
                     if (result != null || !isConnected()) {
-//                        BaseDialog.alertDialog(
-//                            context,
-//                            context.resources.getString(R.string.failed),
-//                            if (result?.message == null) context.getString(R.string.error_no_rfid_reader_found) else result.message!!
-//                        )
-                        BaseToast.warningToast(context,if (result?.message == null) context.getString(
-                            R.string.error_no_rfid_reader_found) else result.message!! )
+                        BaseToast.warningToast(
+                            context, if (result?.message == null) context.getString(
+                                R.string.error_no_rfid_reader_found
+                            ) else result.message!!
+                        )
                         disconnect()
-                    } else BaseToast.successToast(context, context.getString(R.string.reader_connected))
+                    } else BaseToast.successToast(
+                        context,
+                        context.getString(R.string.reader_connected)
+                    )
                     callback.invoke(isConnected())
+                    if(isConnected())
+                        this@Companion.setReadTagEvent(object : RFIDReadTagListener{
+                            override fun onTagRead(tagID: String) {
+                                onReadTagCallback(tagID)
+                            }
+                        })
                 }
             }.execute()
         }
@@ -66,7 +73,7 @@ class RFIDReader {
             return rfidReader!!.isConnected
         }
 
-        fun setReadTagEvent(readTagEventsListener: RfidEventsListener) {
+        fun setReadTagEvent(readTagEventsListener: RFIDReadTagListener) {
             if(isConnected()){
                 rfidReader?.Events?.setTagReadEvent(true)
                 Companion.readTagEventsListener = readTagEventsListener
