@@ -1,9 +1,12 @@
 package hk.com.chengwailim.basecomponents.Components
 
+import android.content.ComponentCallbacks
 import android.content.Context
 import android.text.InputFilter
 import android.text.InputType
 import android.util.AttributeSet
+import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.widget.LinearLayout
 import hk.com.chengwailim.basecomponents.R
@@ -32,6 +35,15 @@ open class StandardEditText @JvmOverloads constructor(
             standard_edit_text.inputType = context.obtainStyledAttributes(it, intArrayOf(android.R.attr.inputType) ,0, 0).getInt(0, InputType.TYPE_CLASS_TEXT)
             standard_edit_text.setText(context.obtainStyledAttributes(it, intArrayOf(android.R.attr.text) ,0, 0).getString(0))
         }
+    }
+
+    fun setOnBarCodeScanListener(callback: ()->Unit){
+        this.setKeyListener(OnKeyListener() { view, keyCode, keyEvent ->
+            if (keyCode.equals(KeyEvent.KEYCODE_ENTER) && keyEvent.action == KeyEvent.ACTION_DOWN) {
+                callback.invoke()
+            }
+            false
+        })
     }
 
     fun setMaxCharacters(maxCharacters: Int){
