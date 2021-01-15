@@ -9,7 +9,7 @@ import hk.com.chengwailim.basecomponents.Util.BaseToast
 import hk.com.chengwailim.basecomponents.R
 import java.lang.Exception
 
-class RFIDReaderTest {
+class RFIDReader {
     companion object {
         var readers: Readers
         var rfidReader: RFIDReader? = null
