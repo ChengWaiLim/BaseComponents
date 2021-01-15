@@ -9,7 +9,7 @@ import hk.com.chengwailim.basecomponents.Util.BaseToast
 import hk.com.chengwailim.basecomponents.R
 import java.lang.Exception
 
-class RFIDReader {
+class RFIDReaderTest {
     companion object {
         var readers: Readers
         var rfidReader: RFIDReader? = null
@@ -21,6 +21,7 @@ class RFIDReader {
         fun setUpReader(context: Activity, callback: (isConnected: Boolean) -> Unit = {}) {
             object : AsyncTask<Void, Void, Exception?>() {
                 override fun onPreExecute() {
+                    readers = Readers(context, ENUM_TRANSPORT.SERVICE_SERIAL)
                     BaseDialog.showLoading(context)
                 }
 
