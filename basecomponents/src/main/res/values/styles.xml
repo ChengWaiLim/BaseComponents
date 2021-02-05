@@ -42,4 +42,12 @@
         <item name="android:maxLines">1</item>
         <item name="android:minLines">1</item>
     </style>
+    <style name="standardSpinner">
+        <item name="android:textAlignment">center</item>
+        <item name="smsp_itemColor">@color/colorPrimary</item>
+        <item name="smsp_itemListColor">#7C4DFF</item>
+        <item name="smsp_itemListHintColor">#FFFFFF</item>
+        <item name="smsp_selectedItemListColor">#FF5252</item>
+        <item name="smsp_floatingLabelSize">16sp</item>
+    </style>
 </resources>

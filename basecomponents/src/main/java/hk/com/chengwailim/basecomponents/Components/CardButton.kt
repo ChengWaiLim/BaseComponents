@@ -23,7 +23,7 @@ class CardButton @JvmOverloads constructor(
         }
     }
 
-    public fun setOnClickLinstener(listener: OnClickListener){
-        cardView.setOnClickListener(listener)
+    public override fun setOnClickListener(l: OnClickListener?) {
+        cardView.setOnClickListener(l)
     }
 }
