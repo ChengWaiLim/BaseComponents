@@ -1,4 +1,4 @@
-package hk.com.cft.sfc_inventory_application.Util.Database
+package hk.com.chengwailim.basecomponents.DataBase
 
 import android.content.ContentValues
 import android.content.Context
